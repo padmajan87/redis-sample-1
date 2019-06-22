@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.5.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.redis.example</groupId>
+	<artifactId>redis-example</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	<name>redis-example</name>
+	<description>Demo project for Spring Boot</description>
+	<scm>
+	<connection>scm:git:https://github.com/padmajan87/redis_sample.git</connection>
+		<developerConnection>scm:git:https://github.com/padmajan87/redis_sample.git</developerConnection>
+		<url>http://github.com/padmajan87/redis_sample</url>
+	  <tag>HEAD</tag>
+  </scm>
+	<properties>
+		<java.version>1.8</java.version>
+		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+	</properties>
+	
+
+<distributionManagement>
+   <repository>
+      <id>release</id>
+      <url>file:///D:/repository/release</url>
+   </repository>
+   <snapshotRepository>
+            <id>snapshot</id>
+            <name>snapshots</name>
+            <url>file:///D:/repository/snapshots</url>
+   </snapshotRepository>
+</distributionManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+		<dependency>
+			<groupId>org.sonarsource.scanner.maven</groupId>
+			<artifactId>sonar-maven-plugin</artifactId>
+			<version>3.2</version>
+		</dependency>
+	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<activation>
+			<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<sonar.host.url>
+				http://localhost:9000
+				</sonar.host.url>
+			</properties> 
+		</profile>
+		
+	   <profile>
+	      <id>releases</id>
+	      <build>
+	         <plugins>
+	            <plugin>
+	               <groupId>org.sonatype.plugins</groupId>
+	               <artifactId>nexus-staging-maven-plugin</artifactId>
+	               <version>1.5.1</version>
+	               <executions>
+	                  <execution>
+	                     <id>default-deploy</id>
+	                     <phase>deploy</phase>
+	                     <goals>
+	                        <goal>deploy</goal>
+	                     </goals>
+	                  </execution>
+	               </executions>
+	               <configuration>
+	                  <serverId>release</serverId>
+	                  <nexusUrl>file:///D:/repository/release/</nexusUrl>
+	                  <skipStaging>true</skipStaging>
+	               </configuration>
+	            </plugin>
+	         </plugins>
+	      </build>
+	   </profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+				    <execution>
+				      <goals>
+				        <goal>repackage</goal>
+				      </goals>
+				    </execution>
+			</executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-release-plugin</artifactId>
+			    <version>2.5.3</version>
+			    <!-- <configuration>
+			      <releaseProfiles>releases</releaseProfiles>
+			    </configuration> -->
+		  </plugin>
+		</plugins>
+	</build>
+
+</project>
