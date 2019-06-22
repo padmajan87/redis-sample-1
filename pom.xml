@@ -9,14 +9,14 @@
 	</parent>
 	<groupId>com.redis.example</groupId>
 	<artifactId>redis-example</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>redis-example</name>
 	<description>Demo project for Spring Boot</description>
 	<scm>
 	   <connection>scm:git:https://github.com/padmajan87/redis-sample-1.git</connection>
 	   <url>https://github.com/padmajan87/redis-sample-1</url>
 	   <developerConnection>scm:git:https://github.com/padmajan87/redis-sample-1.git</developerConnection>
-	  <tag>dev2</tag>
+	  <tag>dev1</tag>
   </scm>
 	<properties>
 		<java.version>1.8</java.version>
