@@ -21,6 +21,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+      <start-class>com.redis.example.redisexample.RedisExampleApplication</start-class>
 	</properties>
 	
 
@@ -83,47 +84,26 @@
 				</sonar.host.url>
 			</properties> 
 		</profile>
-		
-	   <profile>
-	      <id>releases</id>
-	      <build>
-	         <plugins>
-	            <plugin>
-	               <groupId>org.sonatype.plugins</groupId>
-	               <artifactId>nexus-staging-maven-plugin</artifactId>
-	               <version>1.5.1</version>
-	               <executions>
-	                  <execution>
-	                     <id>default-deploy</id>
-	                     <phase>deploy</phase>
-	                     <goals>
-	                        <goal>deploy</goal>
-	                     </goals>
-	                  </execution>
-	               </executions>
-	               <configuration>
-	                  <serverId>release</serverId>
-	                  <nexusUrl>file:///D:/repository/release/</nexusUrl>
-	                  <skipStaging>true</skipStaging>
-	               </configuration>
-	            </plugin>
-	         </plugins>
-	      </build>
-	   </profile>
 	</profiles>
 
 	<build>
+		<resources>
+		    <resource>
+		      <directory>src/main/java</directory>
+		      <filtering>true</filtering>
+		      <includes>
+		        <include>**/*.java</include>
+		      </includes>
+		    </resource>
+	  </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-				    <execution>
-				      <goals>
-				        <goal>repackage</goal>
-				      </goals>
-				    </execution>
-			</executions>
+				<artifactId>spring-boot-maven-plugin</artifactId>				
+				      <configuration>
+                        <mainClass>com.redis.example.redisexample.RedisExampleApplication</mainClass>
+                    </configuration>
+				   
 			</plugin>
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
